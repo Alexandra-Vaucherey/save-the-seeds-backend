@@ -17,7 +17,7 @@ router.post('/savepointgps', function (req, res, next) {
         });
 
         newPointgps.save().then((data) => {
-            console.log(data);
+            
             res.json({ result: true });
         });
     });
@@ -27,10 +27,10 @@ router.post('/savepointgps', function (req, res, next) {
 
 router.post('/displaypointgps', function (req, res, next) {
     User.findOne({ token: req.body.token }).then((data) => {
-        console.log(data);
+       
 
         Pointgps.find({ user: data._id }).then((data) => {
-            console.log("listeseed:", data);
+            
 
           const value = data.map(el => {
             return (
@@ -38,7 +38,7 @@ router.post('/displaypointgps', function (req, res, next) {
             )
           })
 
-        //   console.log(value)
+        
             res.json({ result: true, value });
         });
     });

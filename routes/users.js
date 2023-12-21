@@ -16,7 +16,7 @@ router.post('/signup', function(req, res, next) {
   
 const hash = bcrypt.hashSync(req.body.password, 10);
 
-console.log(new Date(req.body.birthday +" UTC"))
+
 
   const newUser = new User({
     username: req.body.username,
@@ -31,7 +31,7 @@ console.log(new Date(req.body.birthday +" UTC"))
 
    newUser.save().then(doc => {
     res.json({result: true, token: doc.token})
-            console.log(doc)
+            
         });
 })
 

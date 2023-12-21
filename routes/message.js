@@ -20,7 +20,7 @@ router.post("/newmessage", (req, res) => {
 
     newMessage.save().then((data) => {
       //save the info if the token is there
-      console.log(data);
+      
       res.json({ result: true });
     });
   });

@@ -7,10 +7,9 @@ const User = require('../models/users')
 
 router.post('/:slug', (req, res) => {
     User.findOne({token: req.body.token}).then (data => {
-        console.log('data is:', data)
-        console.log('token is:', req.body.token)
+       
         if (data) {
-            console.log('slug is:', req.params.slug)
+           
 
             const userId = data.id;
             
@@ -27,11 +26,11 @@ router.post('/:slug', (req, res) => {
                     });
             
                     newAnswer.save().then(answerData => {
-                        console.log(data._id)
+                        
                         Message.findByIdAndUpdate(data._id, {
                             $push: {answers: answerData._id}
                         }).then(()=> {
-                            console.log(data)
+                           
                             res.json({result: true})
 
                         })
@@ -39,7 +38,7 @@ router.post('/:slug', (req, res) => {
                 }
             })
     } else {
-        res.json({ result: false, error: "User not foundddd" });
+        res.json({ result: false, error: "User not found" });
       }
     })
 });
@@ -49,7 +48,7 @@ router.get(`/allanswers`, (req,res) => {
     .populate("answers")
     .populate("author")
     .then((data) => {
-        console.log(data[0])
+        
         res.json({result: true, answers: data})
     })
 })

@@ -5,9 +5,9 @@ const User = require("../models/users");
 
 router.post("/newseed", function (req, res, next) {
   // Vérifie qu'il y a bien une plante envoyée
-  console.log("VOICI: ", req.body.seedname);
+  
   if (req.body.seedname == "") {
-    console.log("finito");
+    
     return;
   }
   Seed.findOne({ seedname: req.body.seedname }).then((data) => {
@@ -30,7 +30,7 @@ router.post("/newseed", function (req, res, next) {
         });
 
         newSeed.save().then((data) => {
-          console.log(data);
+          
           res.json({ result: true, value: data._id });
         });
       });
@@ -41,12 +41,12 @@ router.post("/newseed", function (req, res, next) {
 // recupérer le nombre de seed par User (pages profil )
 
 router.post("/findseeds", function (req, res, next) {
-  console.log("token is :", req.body.token);
+  
 
   User.findOne({ token: req.body.token }).then((data) => {
-    console.log(data);
+    
     Seed.find({ user: data._id }).then((data) => {
-      console.log("listeseed:", data);
+     
 
       let seedsum = 0;
       for (let i = 0; i < data.length; i++) {
